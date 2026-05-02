@@ -26,9 +26,9 @@ spring:
   # Datasource
   # ----------------------------------------------------------
   datasource:
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5433}/${PGDATABASE:novablog}
-    username: ${PGUSER:novablog}
-    password: ${PGPASSWORD:novablog}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5433}/${PGDATABASE:novablog}}
+    username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:novablog}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:novablog}}
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5
