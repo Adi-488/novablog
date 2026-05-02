@@ -35,7 +35,22 @@ public class JwtTokenProvider {
 
     @PostConstruct
     public void init() {
-        byte[] keyBytes = Base64.getDecoder().decode(jwtProperties.getSecret());
+        byte[] keyBytes;
+        try {
+            // Try Base64 decoding first
+            keyBytes = Base64.getDecoder().decode(jwtProperties.getSecret());
+        } catch (IllegalArgumentException e) {
+            // Fallback to raw string bytes if they didn't provide a valid base64 string
+            keyBytes = jwtProperties.getSecret().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+        }
+
+        // HMAC-SHA256 requires at least 256 bits (32 bytes). Pad if necessary to prevent startup crashes.
+        if (keyBytes.length < 32) {
+            byte[] padded = new byte[32];
+            System.arraycopy(keyBytes, 0, padded, 0, keyBytes.length);
+            keyBytes = padded;
+        }
+
         this.signingKey = Keys.hmacShaKeyFor(keyBytes);
         log.info("JWT signing key initialized (algorithm: HmacSHA256)");
     }
