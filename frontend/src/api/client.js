@@ -7,7 +7,8 @@
  * - Standardized error handling
  */
 
-const API_BASE = '/api/v1';
+// Use the VITE_API_URL environment variable if available (production), otherwise fallback to relative path (local dev proxy)
+const API_BASE = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/v1` : '/api/v1';
 
 // ----------------------------------------------------------------
 // Token Management
