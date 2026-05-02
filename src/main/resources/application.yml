@@ -3,8 +3,7 @@
 # Default Configuration
 # ============================================================
 
-server:
-  forward-headers-strategy: framework
+
 
 spring:
   application:
@@ -70,6 +69,7 @@ spring:
 # Server Configuration
 # ----------------------------------------------------------
 server:
+  forward-headers-strategy: framework
   port: 8080
   servlet:
     context-path: /
