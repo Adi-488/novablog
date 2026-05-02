@@ -127,10 +127,10 @@ novablog:
       region:
         static: us-east-1
       credentials:
-        access-key: mock-access-key
-        secret-key: mock-secret-key
+        access-key: ${AWS_ACCESS_KEY_ID:mock-access-key}
+        secret-key: ${AWS_SECRET_ACCESS_KEY:mock-secret-key}
       s3:
-        endpoint: https://s3.us-east-1.amazonaws.com
+        endpoint: ${AWS_ENDPOINT:https://s3.us-east-1.amazonaws.com}
   mail:
     host: ${MAIL_HOST:localhost}
     port: ${MAIL_PORT:1025}
