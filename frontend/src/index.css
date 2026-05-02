@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface antialiased font-sans;
+  }
+}
+
+@layer utilities {
+  .bento-card {
+    @apply bg-surface-bright rounded-[2.5rem] overflow-hidden relative shadow-sm transition-transform duration-300 hover:scale-[1.02];
+  }
+  
+  .glass-pill {
+    @apply bg-white/90 backdrop-blur-md rounded-full px-4 py-2 text-sm font-bold text-black shadow-sm;
+  }
+}
